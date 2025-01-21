@@ -1,10 +1,10 @@
-import {  BrowserRouter,Routes, Route } from "react-router-dom";
-import {DashboardPage, DeclararImposto, DeclararRendimentos, Historico, Login } from "src/pages";
+import { BrowserRouter,Routes, Route } from "react-router-dom";
+import { DashboardPage, DeclararImposto, DeclararRendimentos, Historico, Login } from "src/pages";
 
 export function AppRoutes() {
   return (
     <BrowserRouter>
-      <Routes>
+        <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<DashboardPage />} />

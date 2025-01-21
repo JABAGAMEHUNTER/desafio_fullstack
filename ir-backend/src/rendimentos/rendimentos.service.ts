@@ -13,16 +13,6 @@ export class RendimentosService {
   ) {}
 
   async create(createRendimentoDto: CreateRendimentoDto): Promise<Rendimento> {
-    /*const { id_usuario } = createRendimentoDto;
-
-    const existingRendimento = await this.rendimentoRepository.findOne({
-      where: { id_usuario },
-    });
-
-    if (existingRendimento) {
-      throw new BadRequestException({ message: 'Rendimento ja cadastrado' });
-    }   
-    */
     const newRendimento = this.rendimentoRepository.create(createRendimentoDto);
     return await this.rendimentoRepository.save(newRendimento);
   }

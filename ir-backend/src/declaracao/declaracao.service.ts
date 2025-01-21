@@ -13,16 +13,6 @@ export class DeclaracaoService {
   ) {}
 
   async create(createDeclaracaoDto: CreateDeclaracaoDto): Promise<Declaracao> {
-    /*const { ano_fiscal } = createDeclaracaoDto;
-
-    const existingUser = await this.declaracaoRepository.findOne({
-      where: { ano_fiscal },
-    });
-    
-    if (existingUser) {
-      throw new BadRequestException({ message: 'Declaracao ja feita por usuario' });
-    }
-    */
     const newDeclaracao = this.declaracaoRepository.create(createDeclaracaoDto);
     return await this.declaracaoRepository.save(newDeclaracao);
   }

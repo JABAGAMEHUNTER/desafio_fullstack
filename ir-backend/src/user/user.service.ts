@@ -23,7 +23,7 @@ export class UserService {
     });
 
     if (existingUser) {
-      throw new BadRequestException({ message: 'Email already exist' });
+      throw new BadRequestException({ message: 'Email do usuario ja existente' });
     }
 
     const saltOrRounds = 10;
@@ -42,7 +42,7 @@ export class UserService {
   async findOne(email: string): Promise<User> {
     const user = await this.userRepository.findOne({ where: { email } });
     if (!user) {
-      throw new BadRequestException({ message: 'User not found' });
+      throw new BadRequestException({ message: 'Usuario nao encontrado' });
     }
     return user;
   }
@@ -51,7 +51,7 @@ export class UserService {
   async update(email: string, updateUserDto: UpdateUserDto): Promise<User> {
     const user = await this.findOne(email);
     if (!user) {
-      throw new BadRequestException({ message: 'User not found' });
+      throw new BadRequestException({ message: 'Usuario nao encontrado' });
     }
 
     const updateUser = this.userRepository.merge(user, updateUserDto);
@@ -62,7 +62,7 @@ export class UserService {
   async remove(email: string): Promise<User> {
     const user = await this.findOne(email);
     if (!user) {
-      throw new BadRequestException({ message: 'User not found' });
+      throw new BadRequestException({ message: 'Usuario nao encontrado' });
     }
     return await this.userRepository.remove(user);
   }

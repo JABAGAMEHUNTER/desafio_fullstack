@@ -18,7 +18,7 @@ export function Nav() {
             <Button variant="primary">Rendimentos</Button>
           </Link>
           <Link to="/historico">
-            <Button variant="primary">Hitórico</Button>
+            <Button variant="primary">Histórico</Button>
           </Link>
           <Link to="/logout">
             <Button variant="primary">Deslogar</Button>
