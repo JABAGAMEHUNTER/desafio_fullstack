@@ -1,22 +1,24 @@
-import { useState } from 'react';
 import { Button, Nav } from 'src/components';
-
-function initialState() {
-  return {email: '', password: ''};
-}
+import { FormProvider, useForm } from 'react-hook-form';
+import { loginResolver } from '@components/validations';
+import { IsendLogin } from 'src/interfaces';
+import { LoginService } from 'src/services';
 
 export function Login() {
-  const [values, setValues] = useState(initialState);
-
-  function onChange(event) {
-    const { value, name } = event.target;
-
-    setValues({
-      ...values,
-      [name]: value,
-    });
+  const formMethods = useForm<IsendLogin>({ resolver: loginResolver });
+  const { formState: { errors },
+    register,
+    handleSubmit,
+    reset,
+  } = formMethods;
+  async function onSubmit(values: any) {
+      console.log(values);
+      const { status, data } = await LoginService.Login(values);
+      if (status === 201) {
+        console.log('data', data);
+        reset()
+      }
   }
-
   return (
     <>
       <Nav />
@@ -24,13 +26,21 @@ export function Login() {
       <h1>Login</h1>
       <p>
       </p>
-      <form className="form">
+      <FormProvider {...formMethods}>
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">E-mail</label>
-        <input name="email" type='email' onChange={onChange} value={values.email}></input>
+        <input {...register('email')} type="email"></input>
+          {errors?.email?.message && (
+            <p className="error-text">{errors?.email?.message}</p>
+          )}
         <label htmlFor="password">Senha</label>
-        <input name="password" type='text' onChange={onChange} value={values.password}></input>
+        <input {...register('password')} type="text"></input>
+          {errors?.password?.message && (
+            <p className="error-text">{errors?.password?.message}</p>
+          )}
         <Button type="submit" variant="primary">Enviar</Button>
       </form>
+      </FormProvider>
       </div>
     </>
   );
