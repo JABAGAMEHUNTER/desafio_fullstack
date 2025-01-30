@@ -1,10 +1,13 @@
 import { DeclaracaoResolver } from '@components/validations';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Button, Nav } from 'src/components';
-import {IsendDeclacarao} from 'src/interfaces';
-import {DeclaracaoService} from 'src/services';
+import { IsendDeclacarao } from 'src/interfaces';
+import { DeclaracaoService } from 'src/services';
+import { useContext } from 'react';
+import { loginContext } from 'src/context';
 
 export function DeclararImposto() {
+  const token = useContext(loginContext);
   const formMethods = useForm<IsendDeclacarao>({ resolver: DeclaracaoResolver});
   const { formState: { errors },
     register,
@@ -13,11 +16,8 @@ export function DeclararImposto() {
   } = formMethods;
 
   async function onSubmit(values: any) {
-      console.log(values);
+      //console.log(values);
       const { status, data } = await DeclaracaoService.createDeclaracao(values);
-  //  if (status === 201) {
-  //    reset()
-  // }
       if (status === 201) {
         console.log('data', data);
         reset()

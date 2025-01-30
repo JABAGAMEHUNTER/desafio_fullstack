@@ -3,6 +3,7 @@ import { Api } from "src/providers";
 
 const Login = (data: IsendLogin) => Api.post('/auth/signin', data);
 
+
 export const LoginService = {
   Login
 };

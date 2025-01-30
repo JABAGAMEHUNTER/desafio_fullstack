@@ -1,4 +1,4 @@
-import {IDeclaracaoRendimento} from "src/interfaces";
+import { IDeclaracaoRendimento } from "src/interfaces";
 import { Api } from "src/providers";
 
 const createDeclaracao = (data: IDeclaracaoRendimento) => Api.post('/declaracao', data);
