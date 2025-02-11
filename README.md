@@ -65,7 +65,7 @@ Backend e seu token JWT.
 Com a API pode-se também alterar algumas informações que iriam estar prontas para aplicar con o frontend, como associar o Usuário a um grupo de Declarações e um grupo de Rendimentos a uma
 Declaração.
 
-Itens que não foram possíveis implementar a tempo:
+Próxima iteração:
 
 	- Cálculo do imposto de renda baseado em Rendimentos cadastrados pelo Usuário
 	- Autenticação de Login no frontend
