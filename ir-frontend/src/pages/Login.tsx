@@ -3,7 +3,9 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { loginResolver } from '@components/validations';
 import { IsendLogin } from 'src/interfaces';
 import { LoginService } from 'src/services';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { LoginContext } from 'src/context';
+import {useNavigate} from 'react-router-dom';
 
 export interface Token {
   response_token: string;
@@ -14,7 +16,9 @@ export function Login() {
   //os dados sao passados para o formMethods
 
   const formMethods = useForm<IsendLogin>({ resolver: loginResolver });
-  const [ token, setToken ] = useState<any>();
+  const auth = useContext(LoginContext);
+  const navigate = useNavigate();
+  //const [ token, setToken ] = useState<string>();
   //Funcao que maneja formulario
   //cria uma constante chamada formState e passa os dados do formMethods
   const { formState: { errors },
@@ -28,10 +32,12 @@ export function Login() {
   //Funcao de login usando loginService
   async function onSubmit(values: any) {
     const { status, data } = await LoginService.Login(values);
-    const token = data.access_token;
-    setToken(token);
+    //const token = data.access_token;
+    auth?.setToken(data.access_token);  
+    localStorage.setItem("token", data.access_token);
       if (status === 200) {
-        console.log(token);
+        console.log("token:", localStorage.getItem("token"));
+        navigate("/historico");
       }
   }
   return (

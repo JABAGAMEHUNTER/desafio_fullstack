@@ -1,12 +1,11 @@
 import { BrowserRouter,Routes, Route } from "react-router-dom";
 import { DashboardPage, DeclararImposto, DeclararRendimentos, Historico, Login } from "src/pages";
-import { loginContext } from "src/context";
+import { LoginProvider } from "src/context/LoginContext";
 
 export function AppRoutes() {
   return (
-
-   <loginContext.Provider value={''}>
-    <BrowserRouter>
+    <LoginProvider>
+      <BrowserRouter>
         <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
@@ -16,6 +15,6 @@ export function AppRoutes() {
         <Route path="/historico" element={<Historico />} />
       </Routes>
     </BrowserRouter>
-  </loginContext.Provider>
+  </LoginProvider>
   );
 }

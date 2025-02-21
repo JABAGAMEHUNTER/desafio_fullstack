@@ -68,11 +68,13 @@ Declaração.
 Próxima iteração:
 
 	- Cálculo do imposto de renda baseado em Rendimentos cadastrados pelo Usuário
-	- Autenticação de Login no frontend
+	- Autenticação de Login no frontend -- Feito
 	- Autenticação de dois fatores
 
 Acredito que em uma semana estes itens poderiam estar mais polidos e integrados, no entanto foi algo muito proveitoso fazer de um ponto de vista a sempre se desafiar em menor tempo.
 
+## Demais Funcionalidades
+Atualmente as demais Funcionalidades estão sendo implementadas
 
 
 
